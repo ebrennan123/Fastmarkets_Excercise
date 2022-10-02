@@ -1,5 +1,5 @@
 # Fastmarkets_Excercise
-Example for Technical Interview
+
 Within this example I will demonstrate how I created a complete Linux environment on a virtual machine and its supporting resources using Terraform on Azure. 
 I have created the following resources: 
 
