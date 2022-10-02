@@ -1,12 +1,39 @@
 ## Terraform and Azure
-
-> *Prerequisites*
-> So before starting this example I created a Microsoft Azure account which can be found [here](https://portal.azure.com/#home) 
->I installed Terraform using home-brew on my Mac which gave me accesses to its resources
->Finally I configured my Azure account with Terraform using the Azure CLI tool. I set my service principles as per my Azure credentials and I was ready to use Terraform to create infrastructure.
-
+ 
+The purpose is to create the following resources 
+ - Virtual Network
+ - Subnet
+ - Public ID Address
+ - Network Security Group with SSH inbound rule
+ - Virtual Network Interface Card
+ -  Storage Account for Boot Diagnostics
+ - SSH Key
+ - Virtual Machine
+ 
+## How to run 
+ 
+ *Prerequisites*
+- Create a Microsoft Azure account which can be found [here](https://portal.azure.com/#home) 
+- Install terraform 
+	- `brew install terraform`
+- Configure the Azure account with Terraform using the Azure CLI tool, this is to create a user that Terraform can run as. 
+	- az account set --subscription "**********"
+	- az ad sp create-for-rbac --role="Contributor" --scopes="/subscriptions/<SUBSCRIPTION_ID>"
+- Export the necessary environments variables (or save them in your ~/.zshrc || ~/.bashrc
+    - export ARM_CLIENT_ID=**********
+    - export ARM_CLIENT_SECRET=**********
+    - export ARM_SUBSCRIPTION_ID=**********
+    - export ARM_TENANT_ID=**********
+ 
 Within Azure the Virtual Machine require both storage and networking. The virtual machine these configuration files create runs a simple Ubuntu Image. 
-
-To create the virtual machine we initialise terraform using the command: *terraform init*
-
-We can then run *terraform apply* to create our VM using the configuration files.
+ 
+ 
+To create your infrastructure, run:
+ 
+    terraform init
+ 
+    terraform apply
+ 
+To clear down the account, run: 
+ 
+    terraform destroy
