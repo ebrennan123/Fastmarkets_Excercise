@@ -33,6 +33,8 @@ To create your infrastructure, run:
     terraform init
  
     terraform apply
+    
+    terraform show -json | \ jq -r '.values.root_module.resources[].values | select(.private_key_pem) |.private_key_pem' \ > ~/.ssh/terraform_private_key.pem
  
 To clear down the account, run: 
  
