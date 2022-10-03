@@ -39,8 +39,8 @@ terraform apply
  
 # 3: grab our private key from the terraform output, uses JQ to find the field. 
 # We then push this to a private key file, and change the permissions so ansible doesn't give out. 
-terraform show -json | \ jq -r '.values.root_module.resources[].values | select(.private_key_pem) |.private_key_pem' \ > ~/.ssh/terraform_private_key.pem && sudo chmod 600 ~/.ssh/terraform_private_key.pem
- 
+terraform show -json | jq -r '.values.root_module.resources[].values | select(.private_key_pem) |.private_key_pem' > ~/.ssh/terraform_private_key.pem && sudo chmod 600 ~/.ssh/terraform_private_key.pem
+
 # 4: logs in as root(superadmin), we want to replace or add the new addresses for eoinbrennan.com and the ubuntu box
 sudo su
  
