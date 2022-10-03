@@ -51,10 +51,10 @@ cat /etc/hosts | grep -v "eoinbrennan.com" | grep -v ubuntu > /tmp/hosts
 export AZURE_PUBLIC_IP=$(terraform output public_ip_address | tr -d '"')
  
 #We echo the ip address and the url into the tmp file.
-echo -e $AZURE_PUBLIC_IP eoinbrennan.com | tee -a /tmp/hosts
+echo $AZURE_PUBLIC_IP eoinbrennan.com | tee -a /tmp/hosts
  
 #We echo the same ip, and ubuntu into the tmp file.
-echo -e $AZURE_PUBLIC_IP ubuntu | tee -a /tmp/hosts
+echo $AZURE_PUBLIC_IP ubuntu | tee -a /tmp/hosts
  
 #finally, we replace the old hosts file. 
 cat /tmp/hosts | tee > /etc/hosts
